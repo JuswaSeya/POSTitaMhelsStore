@@ -16,9 +16,9 @@ import java.sql.DriverManager;
 
             database db = new database();
             db.server= "sa";
-            db.password = "@cea123";
-            db.ip="192.168.100.46";
-            db.database = "TitaMhels";
+            db.password = "";
+            db.ip="";
+            db.database = "";
             return db;
 
         }
