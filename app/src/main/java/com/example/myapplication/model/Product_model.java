@@ -12,6 +12,11 @@ public class Product {
 
     private int UpperCountProduct;
 
+    private String txtCustomerName;
+
+private int txtBalance;
+    private int txtContact;
+
 
     private int InventoryProductCount;
 
