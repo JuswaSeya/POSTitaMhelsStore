@@ -1,6 +1,6 @@
 package com.example.myapplication.model;
 
-public class Product {
+public class Product_model {
 
     private int productID;
     private String productName;
@@ -49,12 +49,12 @@ private int txtBalance;
     }
 
     // Empty constructor
-    public Product() {
+    public Product_model() {
     }
 
 
     // Constructor with all product information
-    public Product(
+    public Product_model(
             int productID,
             String productName,
             String barcode,

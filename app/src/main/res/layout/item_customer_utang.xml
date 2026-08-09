@@ -1,44 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.cardview.widget.CardView
+<com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
     android:id="@+id/adapterUtang"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="10dp"
-    android:layout_marginVertical="6dp"
-    app:cardCornerRadius="15dp"
-
-    app:cardElevation="4dp">
-
+    android:layout_marginBottom="12dp"
+    app:cardBackgroundColor="#FFFFFF"
+    app:cardCornerRadius="18dp"
+    app:cardElevation="3dp">
 
     <LinearLayout
+        android:id="@+id/customerItemLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="15dp"
+        android:padding="18dp"
         android:gravity="center_vertical">
 
-        <!-- Customer Icon -->
+        <!-- Person Icon -->
+        <ImageView
+            android:id="@+id/imgCustomer"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:padding="12dp"
+            android:src="@drawable/ic_users"
+            android:contentDescription="Customer"
+            app:tint="#9C27B0" />
 
+        <!-- Customer Information -->
         <LinearLayout
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:background="@drawable/bg_blue_circle"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_users"
-                android:tint="#FFFFFF"/>
-
-        </LinearLayout>
-
-        <!-- Customer Info -->
-
-        <LinearLayout
+            android:id="@+id/customerInfoLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -50,48 +43,48 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Juan Dela Cruz"
+                android:textColor="#333333"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtContact"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="09123456789"
-                android:textColor="#666666"/>
+                android:layout_marginTop="3dp"
+                android:text="09XX XXX XXXX"
+                android:textColor="#777777"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/txtBalanceLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Total Balance"
+                android:textColor="#777777"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/txtBalance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Balance : ₱750.00"
-                android:textColor="#D32F2F"
-                android:textStyle="bold"/>
+                android:text="₱1,500.00"
+                android:textColor="#9C27B0"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
-        <!-- Buttons -->
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/btnPayment"
-                android:layout_width="90dp"
-                android:layout_height="40dp"
-                android:text="Payment"/>
-
-            <Button
-                android:id="@+id/btnDetails"
-                android:layout_width="90dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="8dp"
-                android:text="Details"/>
-
-        </LinearLayout>
+        <!-- Arrow -->
+        <ImageView
+            android:id="@+id/btnDetails"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_arrow_forward"
+            android:contentDescription="View Details"
+            app:tint="#999999" />
 
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

@@ -1,6 +1,7 @@
 package com.example.myapplication.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,24 +12,30 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.model.Product_model;
 
+import java.sql.Array;
 import java.util.ArrayList;
 
 public class ProductAdapter
         extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
 
     private Context context;
-    private ArrayList<com.example.myapplication.model.Product> productList;
+    private ArrayList<Product_model> productList;
+
+    private ArrayList<Product_model> originalList;
 
     public ProductAdapter(
             Context context,
-            ArrayList<com.example.myapplication.model.Product> productList) {
+            ArrayList<Product_model> productList) {
 
         this.context = context;
         this.productList = productList;
+        this.originalList=new ArrayList<>(productList);
+        Log.d("productList", "list " + productList.size());
     }
 
-    @NonNull
+
     @Override
     public ViewHolder onCreateViewHolder(
             @NonNull ViewGroup parent,
@@ -50,23 +57,17 @@ public class ProductAdapter
             @NonNull ViewHolder holder,
             int position) {
 
-        com.example.myapplication.model.Product p = productList.get(position);
+        Product_model p = productList.get(position);
 
-        holder.txtProductName.setText(
-                p.getProductName());
+        holder.txtProductName.setText(p.getProductName());
 
-        holder.txtBarcode.setText(
-                "Barcode: " + p.getBarcode());
+        holder.productID.setText("Product ID"+p.getProductID());
 
-        holder.txtCategory.setText(
-                "Category: " + p.getCategory());
+        holder.txtBarcode.setText( "Barcode: " + p.getBarcode());
 
-        holder.txtPrice.setText(
-                String.format(
-                        "Price: ₱%.2f",
-                        p.getPrice()
-                )
-        );
+        holder.txtCategory.setText("Category: " + p.getCategory());
+
+        holder.txtPrice.setText( String.format("Price: ₱%.2f",p.getPrice()));
 
         holder.txtStock.setText(
                 "Stock: " + p.getStock());
@@ -74,7 +75,7 @@ public class ProductAdapter
         // Edit button
         holder.btnEdit.setOnClickListener(v -> {
 
-            // TODO: Add edit functionality here
+
 
         });
 
@@ -100,8 +101,8 @@ public class ProductAdapter
         return productList.size();
     }
 
-    public static class ViewHolder
-            extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView productID;
 
         TextView txtProductName;
         TextView txtBarcode;
@@ -116,6 +117,10 @@ public class ProductAdapter
                 @NonNull View itemView) {
 
             super(itemView);
+
+            productID=itemView.findViewById(R.id.productID);
+
+
 
             txtProductName =
                     itemView.findViewById(
@@ -145,5 +150,30 @@ public class ProductAdapter
                     itemView.findViewById(
                             R.id.btnDelete);
         }
+    }
+    public void filter(String text) {
+
+        productList.clear();
+
+        if (text == null || text.trim().isEmpty()) {
+
+            productList.addAll(originalList);
+
+        } else {
+
+            String searchText = text.toLowerCase().trim();
+
+            for (Product_model product : originalList) {
+
+                if (product.getProductName()
+                        .toLowerCase()
+                        .contains(searchText)) {
+
+                    productList.add(product);
+                }
+            }
+        }
+
+        notifyDataSetChanged();
     }
 }

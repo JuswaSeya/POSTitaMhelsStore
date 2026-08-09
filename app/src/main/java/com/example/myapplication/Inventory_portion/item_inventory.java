@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.ProductAdapter;
+import com.example.myapplication.model.Product_model;
 
 import java.util.ArrayList;
 
@@ -17,7 +18,7 @@ public class item_inventory extends AppCompatActivity {
 
     ProductAdapter adapter;
 
-    ArrayList<com.example.myapplication.model.Product> productList;
+    ArrayList<Product_model> productList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,7 @@ public class item_inventory extends AppCompatActivity {
         productList = new ArrayList<>();
 
         // Add sample products
-        productList.add(new com.example.myapplication.model.Product(
+        productList.add(new Product_model(
                 1,
                 "Bonna 350g 6-12M",
                 "4800153151248",
@@ -43,7 +44,7 @@ public class item_inventory extends AppCompatActivity {
                 "July 21, 2026"
         ));
 
-        productList.add(new com.example.myapplication.model.Product(
+        productList.add(new Product_model(
                 2,
                 "Bear Brand 33g",
                 "4800012345678",

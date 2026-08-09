@@ -1,14 +1,14 @@
 package com.example.myapplication.model;
 
-public class add_new_utang {
+public class add_new_utang_model {
     public String person_name;
-    public int contact_number;
+    public String contact_number;
     public String what_utang;
-
     public Double Amount;
     public String date_borrowed;
     public String due_date;
     public String notes;
+
 
     public String getPerson_name() {
         return person_name;
@@ -18,11 +18,11 @@ public class add_new_utang {
         this.person_name = person_name;
     }
 
-    public int getContact_number() {
+    public String getContact_number() {
         return contact_number;
     }
 
-    public void setContact_number(int contact_number) {
+    public void setContact_number(String contact_number) {
         this.contact_number = contact_number;
     }
 
@@ -65,6 +65,4 @@ public class add_new_utang {
     public void setNotes(String notes) {
         this.notes = notes;
     }
-
-
 }

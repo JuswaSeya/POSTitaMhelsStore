@@ -1,149 +1,112 @@
 package com.example.myapplication.adapter;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.Utang_Package.item_customer_utang;
+import com.example.myapplication.Utang_Package.utang;
+import com.example.myapplication.Utang_Package.utang_details;
+import com.example.myapplication.model.Utang_model;
 
 import java.util.ArrayList;
 
-public class ProductAdapter
-        extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
+public class UtangsAdapter extends RecyclerView.Adapter<UtangsAdapter.UtangViewHolder> {
 
     private Context context;
-    private ArrayList<com.example.myapplication.model.Product> productList;
+    private ArrayList<Utang_model> UtangList;
 
-    public ProductAdapter(
+    public UtangsAdapter(
             Context context,
-            ArrayList<com.example.myapplication.model.Product> productList) {
+            ArrayList<Utang_model> UtangList) {
 
         this.context = context;
-        this.productList = productList;
+        this.UtangList = UtangList;
     }
 
-    @NonNull
+
     @Override
-    public ViewHolder onCreateViewHolder(
+    public UtangViewHolder onCreateViewHolder(
             @NonNull ViewGroup parent,
             int viewType) {
 
-        // Inflate the individual product card
-        View view = LayoutInflater
-                .from(parent.getContext())
+        View view = LayoutInflater.from(parent.getContext())
                 .inflate(
-                        R.layout.activity_item_inventory,
+                        R.layout.item_customer_utang,
                         parent,
-                        false);
+                        false
 
-        return new ViewHolder(view);
+
+                );
+
+        return new UtangViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(
-            @NonNull ViewHolder holder,
+            @NonNull UtangViewHolder holder,
             int position) {
 
-        com.example.myapplication.model.Product p = productList.get(position);
 
-        holder.txtProductName.setText(
-                p.getProductName());
 
-        holder.txtBarcode.setText(
-                "Barcode: " + p.getBarcode());
+        Utang_model UM = UtangList.get(position);
 
-        holder.txtCategory.setText(
-                "Category: " + p.getCategory());
+        holder.txtCustomerName.setText(UM.getName());
+        holder.txtContact.setText(UM.getContact());
 
-        holder.txtPrice.setText(
-                String.format(
-                        "Price: ₱%.2f",
-                        p.getPrice()
-                )
+        holder.txtBalance.setText(
+                "Balance : ₱" + String.format("%.2f", UM.getBalance())
+
+
+
         );
 
-        holder.txtStock.setText(
-                "Stock: " + p.getStock());
+        holder.btnDetails.setOnClickListener(v -> {
 
-        // Edit button
-        holder.btnEdit.setOnClickListener(v -> {
-
-            // TODO: Add edit functionality here
-
+            Intent intent= new Intent(context, utang_details.class);
+            intent.putExtra("Utang_details", UM.getName());
+            context.startActivity(intent);
         });
 
-        // Delete button
-        holder.btnDelete.setOnClickListener(v -> {
-
-            int currentPosition =
-                    holder.getAdapterPosition();
-
-            if (currentPosition !=
-                    RecyclerView.NO_POSITION) {
-
-                productList.remove(currentPosition);
-
-                notifyItemRemoved(currentPosition);
-            }
-
-        });
     }
+
 
     @Override
     public int getItemCount() {
-        return productList.size();
+
+        return UtangList.size();
     }
 
-    public static class ViewHolder
-            extends RecyclerView.ViewHolder {
+    public static class UtangViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtProductName;
-        TextView txtBarcode;
-        TextView txtCategory;
-        TextView txtPrice;
-        TextView txtStock;
+        TextView txtCustomerName;
+        TextView txtContact;
+        TextView txtBalance;
 
-        Button btnEdit;
-        Button btnDelete;
+ImageView btnDetails;
+        public UtangViewHolder(@NonNull View view) {
+            super(view);
 
-        public ViewHolder(
-                @NonNull View itemView) {
+            txtCustomerName = view.findViewById(R.id.txtCustomerName);
+            txtContact = view.findViewById(R.id.txtContact);
+            txtBalance = view.findViewById(R.id.txtBalance);
 
-            super(itemView);
+            btnDetails=view.findViewById(R.id.btnDetails);
 
-            txtProductName =
-                    itemView.findViewById(
-                            R.id.txtProductName);
 
-            txtBarcode =
-                    itemView.findViewById(
-                            R.id.txtBarcode);
 
-            txtCategory =
-                    itemView.findViewById(
-                            R.id.txtCategory);
-
-            txtPrice =
-                    itemView.findViewById(
-                            R.id.txtPrice);
-
-            txtStock =
-                    itemView.findViewById(
-                            R.id.txtStock);
-
-            btnEdit =
-                    itemView.findViewById(
-                            R.id.btnEdit);
-
-            btnDelete =
-                    itemView.findViewById(
-                            R.id.btnDelete);
         }
     }
 }

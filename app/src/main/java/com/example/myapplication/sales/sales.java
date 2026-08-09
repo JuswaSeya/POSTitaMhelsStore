@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.ProductAdapter;
+import com.example.myapplication.model.Product_model;
 
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class sales extends AppCompatActivity {
     ProductAdapter adapter;
 
     ImageButton btnBackSales;
-    ArrayList<com.example.myapplication.model.Product> productList;
+    ArrayList<Product_model> productList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

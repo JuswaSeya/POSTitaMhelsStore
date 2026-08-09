@@ -4,12 +4,15 @@
     android:id="@+id/dashboardID"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:background="#0E1643">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+
         android:padding="20dp">
 
         <!-- Store Name -->
@@ -99,6 +102,8 @@
                 android:layout_marginStart="8dp"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="5dp">
+
+
 
                 <LinearLayout
                     android:layout_width="match_parent"

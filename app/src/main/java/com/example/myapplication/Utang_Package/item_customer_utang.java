@@ -1,6 +1,8 @@
 package com.example.myapplication.Utang_Package;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +14,9 @@ import com.example.myapplication.R;
 
 public class item_customer_utang extends AppCompatActivity {
 
+
+    Button btnDetails;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,5 +27,9 @@ public class item_customer_utang extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+
+
     }
+
 }
