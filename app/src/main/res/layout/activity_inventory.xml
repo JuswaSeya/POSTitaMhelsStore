@@ -26,6 +26,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:padding="3dp"
+
             android:src="@drawable/ic_back"
             android:clickable="true"
             android:focusable="true"/>
@@ -68,7 +69,7 @@
     <!-- Product List -->
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerInventory"
+        android:id="@+id/recyclerInventoryForItem"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"

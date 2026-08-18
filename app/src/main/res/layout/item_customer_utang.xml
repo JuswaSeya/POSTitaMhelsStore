@@ -57,22 +57,13 @@
                 android:textSize="13sp" />
 
             <TextView
-                android:id="@+id/txtBalanceLabel"
+                android:id="@+id/txtAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Total Balance"
+                android:text="Address: no cdata"
                 android:textColor="#777777"
                 android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/txtBalance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="₱1,500.00"
-                android:textColor="#9C27B0"
-                android:textSize="20sp"
-                android:textStyle="bold" />
 
         </LinearLayout>
 

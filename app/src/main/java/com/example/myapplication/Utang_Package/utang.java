@@ -76,7 +76,19 @@ public class utang extends AppCompatActivity {
             ArrayList<Utang_model> list = sql.getUtangDetails (utang.this);
             Log.d("utang", "list " + list.size());
             runOnUiThread(() -> {
-                adapter = new UtangsAdapter(utang.this, list);
+                adapter = new UtangsAdapter(utang.this, list, new UtangsAdapter.OnItemActionListener(){
+
+
+                    @Override
+                    public void onAdd(Utang_model model, int position) {
+                        Intent intent =  new Intent(utang.this,utang_details.class);
+
+                        intent.putExtra("id" , model.getId());
+                        intent.putExtra("fullname", model.getFullname());
+                        intent.putExtra("address",model.getAddress());
+                        startActivity(intent);
+                    }
+                });
                 recyclerView.setAdapter(adapter);
             });
 

@@ -1,32 +1,49 @@
 package com.example.myapplication.model;
 
 public class Utang_model {
-    private String name;
-    private String contact;
-    private Double balance;
+    private String fullname;
+    private String contactNumber;
+    private String address;
+    private int id;
 
-    public String getName() {
-        return name;
+
+    public Utang_model(String fullname, String contactNumber, String address, int id) {
+        this.fullname = fullname;
+        this.contactNumber = contactNumber;
+        this.address = address;
+        this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+
+    public String getFullname() {
+        return fullname;
     }
 
-
-    public String getContact() {
-        return contact;
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
-    public void setContact(String contact) {
-        this.contact = contact;
+    public String getContactNumber() {
+        return contactNumber;
     }
 
-    public Double getBalance() {
-        return balance;
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
     }
 
-    public void setBalance(Double balance) {
-        this.balance = balance;
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

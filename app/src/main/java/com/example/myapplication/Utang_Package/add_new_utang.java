@@ -72,28 +72,6 @@ public class add_new_utang extends AppCompatActivity {
         btnSaveUtang.setOnClickListener(v->{
 
 
-            add_new_utang_model model = new  add_new_utang_model();
-            model.setPerson_name(edtPersonName.getText().toString());
-            model.setContact_number((edtContactNumber.getText().toString()));
-            model.setWhat_utang(edtUtangDescription.getText().toString());
-            model.setAmount(Double.parseDouble(edtAmount.getText().toString()));
-            model.setNotes(edtNotes.getText().toString());
-
-
-
-            if (new productSqlQuery().addNewUtang(this,model)){
-                Toast.makeText(this, "Successfully Save", Toast.LENGTH_SHORT).show();
-                edtPersonName.setText("");
-                edtContactNumber.setText("");
-                edtUtangDescription.setText("");
-                edtAmount.setText("");
-                edtNotes.setText("");
-
-            }
-            else{
-                Toast.makeText(this, "Didnt save Error", Toast.LENGTH_SHORT).show();
-            }
-
 
 
 

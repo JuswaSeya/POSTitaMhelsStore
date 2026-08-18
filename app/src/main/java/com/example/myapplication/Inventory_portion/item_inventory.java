@@ -28,30 +28,30 @@ public class item_inventory extends AppCompatActivity {
 
         // Connect RecyclerView
         recyclerInventory =
-                findViewById(R.id.recyclerInventory);
+                findViewById(R.id.recyclerInventoryForItem);
 
         // Create ArrayList
         productList = new ArrayList<>();
 
         // Add sample products
         productList.add(new Product_model(
-                1,
-                "Bonna 350g 6-12M",
-                "4800153151248",
-                "Milk",
-                291.00,
-                10,
-                "July 21, 2026"
+//                1,
+//                "Bonna 350g 6-12M",
+//                "4800153151248",
+//                "Milk",
+//                291.00,
+//                10,
+//                "July 21, 2026"
         ));
 
         productList.add(new Product_model(
-                2,
-                "Bear Brand 33g",
-                "4800012345678",
-                "Milk",
-                15.00,
-                20,
-                "July 21, 2026"
+//                2,
+//                "Bear Brand 33g",
+//                "4800012345678",
+//                "Milk",
+//                15.00,
+//                20,
+//                "July 21, 2026"
         ));
 
         // Set RecyclerView LayoutManager

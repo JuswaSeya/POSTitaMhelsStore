@@ -22,19 +22,24 @@ import com.example.myapplication.Utang_Package.utang_details;
 import com.example.myapplication.model.Utang_model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UtangsAdapter extends RecyclerView.Adapter<UtangsAdapter.UtangViewHolder> {
 
     private Context context;
     private ArrayList<Utang_model> UtangList;
+    private final OnItemActionListener listener;
 
-    public UtangsAdapter(
-            Context context,
-            ArrayList<Utang_model> UtangList) {
-
+    public UtangsAdapter(Context context,
+                         ArrayList<Utang_model> UtangList, OnItemActionListener listener){
         this.context = context;
         this.UtangList = UtangList;
+        this.listener = listener;
     }
+    public interface OnItemActionListener{
+        void onAdd(Utang_model model,int position);
+    }
+
 
 
     @Override
@@ -63,21 +68,18 @@ public class UtangsAdapter extends RecyclerView.Adapter<UtangsAdapter.UtangViewH
 
         Utang_model UM = UtangList.get(position);
 
-        holder.txtCustomerName.setText(UM.getName());
-        holder.txtContact.setText(UM.getContact());
-
-        holder.txtBalance.setText(
-                "Balance : ₱" + String.format("%.2f", UM.getBalance())
+        holder.txtCustomerName.setText(UM.getFullname());
+        holder.txtContact.setText(UM.getContactNumber());
+        holder.txtAddress.setText(UM.getAddress());
 
 
 
-        );
+
 
         holder.btnDetails.setOnClickListener(v -> {
-
-            Intent intent= new Intent(context, utang_details.class);
-            intent.putExtra("Utang_details", UM.getName());
-            context.startActivity(intent);
+                if(listener != null){
+                    listener.onAdd(UM, holder.getAdapterPosition());
+                }
         });
 
     }
@@ -91,9 +93,9 @@ public class UtangsAdapter extends RecyclerView.Adapter<UtangsAdapter.UtangViewH
 
     public static class UtangViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtCustomerName;
-        TextView txtContact;
-        TextView txtBalance;
+        TextView txtCustomerName,txtContact,txtAddress;
+
+
 
 ImageView btnDetails;
         public UtangViewHolder(@NonNull View view) {
@@ -101,12 +103,15 @@ ImageView btnDetails;
 
             txtCustomerName = view.findViewById(R.id.txtCustomerName);
             txtContact = view.findViewById(R.id.txtContact);
-            txtBalance = view.findViewById(R.id.txtBalance);
+            txtAddress=view.findViewById(R.id.txtAddress);
 
             btnDetails=view.findViewById(R.id.btnDetails);
 
 
 
         }
+
+
+
     }
 }

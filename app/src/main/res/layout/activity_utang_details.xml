@@ -57,38 +57,45 @@
 
             <!-- Customer Name -->
 
-            <TextView
-                android:id="@+id/txtCustomerName"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Juan Dela Cruz"
-                android:textColor="#111827"
-                android:textSize="24sp"
-                android:textStyle="bold"/>
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtCustomerName"
+                    android:layout_width="231dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center|start"
+                    android:text="Juan Dela Cruz"
+                    android:textColor="#111827"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/Editbutton"
+                    android:layout_width="1dp"
+                    android:layout_height="47dp"
+                    android:layout_weight="1"
+                    android:text="Edit?" />
+            </LinearLayout>
 
             <!-- Contact -->
-
-            <TextView
-                android:id="@+id/txtContactNumber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="09123456789"
-                android:textColor="#6B7280"
-                android:textSize="15sp"/>
 
 
             <!-- Divider -->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
-                android:background="#E5E7EB"/>
-
 
             <!-- Overall Balance -->
+
+            <TextView
+                android:id="@+id/txtContactNumber"
+                android:layout_width="match_parent"
+                android:layout_height="22dp"
+                android:layout_marginTop="5dp"
+                android:text="09123456789"
+                android:textColor="#6B7280"
+                android:textSize="15sp" />
 
             <TextView
                 android:layout_width="wrap_content"

@@ -81,33 +81,33 @@ public int upperCountProduct( Context context){
         return total ;
 }
 
-    public int UtangCount (Context context){
-       int total = 0;
-       try{
-
-           Connection con = new connector(context).getConnection();
-
-           String sql = "select count(*)as UtangCount from tblUtang";
-
-           PreparedStatement ps = con.prepareStatement(sql);
-           ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                total = rs.getInt("UtangCount");
-
-           }
-            rs.close();
-            ps.close();
-            con.close();
-
-       } catch (Exception e) {
-           Log.e("SQL", "Error getting product count", e);
-       }return total ;
-
-
+//    public int UtangCount (Context context){
+//       int total = 0;
+//       try{
+//
+//           Connection con = new connector(context).getConnection();
+//
+//           String sql = "select count(*)as UtangCount from tblUtang";
+//
+//           PreparedStatement ps = con.prepareStatement(sql);
+//           ResultSet rs = ps.executeQuery();
+//            if(rs.next()){
+//                total = rs.getInt("UtangCount");
+//
+//           }
+//            rs.close();
+//            ps.close();
+//            con.close();
+//
+//       } catch (Exception e) {
+//           Log.e("SQL", "Error getting product count", e);
+//       }return total ;
 
 
 
-    }
+
+
+//    }
     public ArrayList<Product_model> getProductDetails(Context context) {
 
         ArrayList<Product_model> list = new ArrayList<>();
@@ -179,32 +179,21 @@ public int upperCountProduct( Context context){
             Connection con =
                     new connector(context).getConnection();
 
-            String sql =
-                    "SELECT person_name, contact_number, balance " +
-                            "FROM tblUtang";
+            String sql ="select * from Utangname";
 
-            PreparedStatement ps =
-                    con.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(sql);
 
-            ResultSet rs =
-                    ps.executeQuery();
+            ResultSet rs =ps.executeQuery();
 
             while (rs.next()) {
 
                 Utang_model model =
-                        new Utang_model();
+                        new Utang_model(rs.getString("fullname"),
+                                rs.getString("contactNumber"),
+                                rs.getString("address"),
+                                rs.getInt("id") );
 
-                model.setName(
-                        rs.getString("person_name")
-                );
 
-                model.setContact(
-                        rs.getString("contact_number")
-                );
-
-                model.setBalance(
-                        rs.getDouble("balance")
-                );
 
                 list.add(model);
             }
@@ -225,68 +214,91 @@ public int upperCountProduct( Context context){
         return list;
     }
 
+
+
     //new person to utang
-    public boolean addNewUtang(Context context, add_new_utang_model model) {
-        // Use try-with-resources to automatically close connections and prevent memory leaks
-        String sql = "INSERT INTO tblUtang (person_name, contact_number, what_utang, amount, date_borrowed, notes) " +
-                "VALUES (?, ?, ?, ?, GETDATE(), ?)";
+//    public boolean addNewUtang(Context context, add_new_utang_model model) {
+//        // Use try-with-resources to automatically close connections and prevent memory leaks
+//        String sql = "INSERT INTO tblUtang (person_name, contact_number, what_utang, amount, date_borrowed, notes) " +
+//                "VALUES (?, ?, ?, ?, GETDATE(), ?)";
+//
+//        try (Connection con = new connector(context).getConnection();
+//             PreparedStatement ps = con.prepareStatement(sql)) {
+//
+//            ps.setString(1, model.getPerson_name());
+//            ps.setString(2, model.getContact_number());
+//            ps.setString(3, model.getWhat_utang());
+//            ps.setDouble(4, model.getAmount());
+//            ps.setString(5, model.getNotes()); // This correctly maps to the 5th '?'
 
-        try (Connection con = new connector(context).getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+//            return ps.executeUpdate() > 0;
+//
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//    }
 
-            ps.setString(1, model.getPerson_name());
-            ps.setString(2, model.getContact_number());
-            ps.setString(3, model.getWhat_utang());
-            ps.setDouble(4, model.getAmount());
-            ps.setString(5, model.getNotes()); // This correctly maps to the 5th '?'
-
-            return ps.executeUpdate() > 0;
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-    }
-
-
-
-
-
-
-
-
-
-
-    public boolean UtangDetails (Context context, add_new_utang_model model){
-
-       String personName;
-        String contactNumber;
-    Double balance;
-
-        try{
-           Connection con = new connector(context).getConnection();
-
-
-           String sql = "\n" +
-                   "select person_name,contact_number,balance from tblUtang where person_name = ?";
+    public Utang_model CurrentName (Context context,int id){
+       Connection con= new connector(context).getConnection();
+       try{
+           String sql = "select * from Utangname where id =?";
 
            PreparedStatement ps = con.prepareStatement(sql);
-           ps.setString(1, "person_name");
-           ps.setString(2, "contact_number");
-           ps.setString(3,"balance");
+           ps.setInt(1,id);
            ResultSet rs = ps.executeQuery();
 
-           if (rs.next()){
-              personName= rs.getString("person_name");
-              contactNumber= rs.getString("contact_number");
-               balance = rs.getDouble("balance");
+           if(rs.next()){
+                Utang_model model =  new Utang_model(
+                        rs.getString("fullname"),
+                        rs.getString("contactNumber"),
+                        rs.getString("address"),
+                        rs.getInt("id")
+                        );
+               return model;
+
            }
 
-       }catch (Exception e){
-           Log.e("getProductDetails","Error getting products",e);
+       } catch (Exception e) {
+           throw new RuntimeException(e);
        }
-      return true;
+       return null;
     }
+
+
+
+
+
+
+
+
+
+//    public boolean UtangDetails (Context context, add_new_utang_model model){
+//
+//       String personName;
+//        String contactNumber;
+//    String balance;
+//
+//        try{
+//           Connection con = new connector(context).getConnection();
+//
+//
+//           String sql = "select * from Utangname";
+//
+//           PreparedStatement ps = con.prepareStatement(sql);
+//          ResultSet rs =ps.executeQuery();
+//
+//           if (rs.next()){
+//              personName= rs.getString("fullname");
+//              contactNumber= rs.getString("contactNumber");
+//               balance = rs.getString("address");
+//           }
+//
+//       }catch (Exception e){
+//           Log.e("getProductDetails","Error getting products",e);
+//       }
+//      return true;
+//    }
 
 //
 //
@@ -317,6 +329,52 @@ public int upperCountProduct( Context context){
        } catch (Exception e) {
            throw new RuntimeException(e);
        }
+
+
+
+    }
+    public int UtangUpperCount (Context context){
+       Connection con = new connector(context).getConnection();
+       int total;
+       try{
+           String sql = "select count (*) as UtangCount from Utangname";
+
+
+           PreparedStatement ps = con.prepareStatement(sql);
+
+           ResultSet rs = ps.executeQuery();
+
+           if(rs.next()){
+               total=rs.getInt("UtangCount");
+               return total;
+           }
+
+               } catch (Exception e) {
+                   throw new RuntimeException(e);
+               }
+        return 0;
+    }
+
+    public boolean utangNameSql(Context context ,String fullName,String contactNumber,String address)
+    {
+        try {
+            Connection con = new connector(context).getConnection();
+
+            String sql = "\n" +
+                    "insert into utangName \n" +
+                    "(fullname,contactNumber,address)\n" +
+                    "values(?,?,?)";
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1,fullName);
+            ps.setString(2,contactNumber);
+            ps.setString(3,address);
+
+            return ps.executeUpdate()>0;
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
 
 

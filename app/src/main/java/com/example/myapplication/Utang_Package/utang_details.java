@@ -14,6 +14,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.myapplication.R;
+import com.example.myapplication.edit_Utang_details;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -31,11 +32,14 @@ public class utang_details extends AppCompatActivity {
             return insets;
         });
 
+        String name  = getIntent().getStringExtra("fullname");
+        int id = getIntent().getIntExtra("id", 0);
+
 
         progressDialog=new ProgressDialog(utang_details.this);
         ExecutorService execute = Executors.newSingleThreadExecutor();
 
-        Button btnAddUtang;
+        Button btnAddUtang,Editbutton;
         ImageButton btnBack;
 
         btnBack=findViewById(R.id.btnBack);
@@ -51,6 +55,15 @@ public class utang_details extends AppCompatActivity {
             });
         });
 
+        Editbutton=findViewById(R.id.Editbutton);
+        Editbutton.setOnClickListener(v->{
+            Intent intent =  new Intent(utang_details.this,edit_Utang_details.class);
+
+            intent.putExtra("id" ,id);
+
+            startActivity(intent);
+        });
+
 
         btnAddUtang=findViewById(R.id.btnAddUtang);
         btnAddUtang.setOnClickListener(v->{
@@ -61,6 +74,10 @@ public class utang_details extends AppCompatActivity {
                     progressDialog.setCancelable(false);
                     startActivity(new Intent(utang_details.this, add_Utang_ofThePerson.class));
                 });
+               TextView txtCustomerName ;
+                txtCustomerName=findViewById(R.id.txtCustomerName);
+
+
 
 
             });
@@ -75,7 +92,7 @@ public class utang_details extends AppCompatActivity {
 
         TextView txtCustomerName;
         txtCustomerName=findViewById(R.id.txtCustomerName);
-
+        txtCustomerName.setText(name + " and its id is " + String.valueOf(id));
 //        String name = sql.getUtangDetails(utang_details.this);
 //        txtCustomerName.setText(String.valueOf(name));
 
