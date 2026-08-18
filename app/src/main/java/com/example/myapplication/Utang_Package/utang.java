@@ -18,6 +18,8 @@ import com.example.myapplication.MainActivity;
 import com.example.myapplication.Query.productSqlQuery;
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.UtangsAdapter;
+import com.example.myapplication.add_utang_name;
+import com.example.myapplication.edit_Utang_details;
 import com.example.myapplication.model.Utang_model;
 
 import java.util.ArrayList;
@@ -48,7 +50,7 @@ public class utang extends AppCompatActivity {
         Button btnAddCustomer;
         btnAddCustomer = findViewById(R.id.btnAddCustomer);
         btnAddCustomer.setOnClickListener(v->{
-            startActivity(new Intent(utang.this, add_new_utang.class));
+            startActivity(new Intent(utang.this, add_utang_name.class));
         });
 
 
@@ -63,6 +65,7 @@ public class utang extends AppCompatActivity {
 
         ImageView btnBack;
         btnBack=findViewById(R.id.btnBack);
+
         btnBack.setOnClickListener(v->{
             startActivity(new Intent(this, MainActivity.class));
 

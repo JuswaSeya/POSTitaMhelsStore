@@ -13,8 +13,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.myapplication.Query.productSqlQuery;
 import com.example.myapplication.R;
 import com.example.myapplication.edit_Utang_details;
+import com.example.myapplication.model.Utang_model;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -31,18 +33,21 @@ public class utang_details extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+        TextView txtContactNumber,txtCustomerName;
         String name  = getIntent().getStringExtra("fullname");
         int id = getIntent().getIntExtra("id", 0);
-
+        Utang_model model =  new productSqlQuery().CurrentName(this,id);
 
         progressDialog=new ProgressDialog(utang_details.this);
         ExecutorService execute = Executors.newSingleThreadExecutor();
 
         Button btnAddUtang,Editbutton;
         ImageButton btnBack;
-
+        txtCustomerName=findViewById(R.id.txtCustomerName);
+        txtContactNumber=findViewById(R.id.txtContactNumber);
         btnBack=findViewById(R.id.btnBack);
+
+
 
         btnBack.setOnClickListener(view->{
             execute.execute(()->{
@@ -56,6 +61,7 @@ public class utang_details extends AppCompatActivity {
         });
 
         Editbutton=findViewById(R.id.Editbutton);
+
         Editbutton.setOnClickListener(v->{
             Intent intent =  new Intent(utang_details.this,edit_Utang_details.class);
 
@@ -64,6 +70,8 @@ public class utang_details extends AppCompatActivity {
             startActivity(intent);
         });
 
+        txtContactNumber.setText(model.getContactNumber());
+        txtCustomerName.setText(model.getFullname());
 
         btnAddUtang=findViewById(R.id.btnAddUtang);
         btnAddUtang.setOnClickListener(v->{
@@ -74,8 +82,7 @@ public class utang_details extends AppCompatActivity {
                     progressDialog.setCancelable(false);
                     startActivity(new Intent(utang_details.this, add_Utang_ofThePerson.class));
                 });
-               TextView txtCustomerName ;
-                txtCustomerName=findViewById(R.id.txtCustomerName);
+
 
 
 
@@ -89,12 +96,6 @@ public class utang_details extends AppCompatActivity {
 
 
 
-
-        TextView txtCustomerName;
-        txtCustomerName=findViewById(R.id.txtCustomerName);
-        txtCustomerName.setText(name + " and its id is " + String.valueOf(id));
-//        String name = sql.getUtangDetails(utang_details.this);
-//        txtCustomerName.setText(String.valueOf(name));
 
 
     }

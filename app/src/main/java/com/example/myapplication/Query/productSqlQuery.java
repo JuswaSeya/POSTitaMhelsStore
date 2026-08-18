@@ -332,7 +332,38 @@ public int upperCountProduct( Context context){
 
 
 
+
+
+
     }
+
+    public boolean updateUtang (Context context , int id,String fullname,String contactNumber,String address){
+       Connection con = new connector(context).getConnection();
+try {
+    String sql = "update Utangname\n" +
+            "set fullname=? ,contactNumber=?,address=?\n" +
+            "where id = ?";
+
+    PreparedStatement ps = con.prepareStatement(sql);
+    ps.setString(1,fullname);
+    ps.setString(2,contactNumber);
+    ps.setString(3,address);
+    ps.setInt(4,id);
+
+    int val = ps.executeUpdate();
+
+    if (val > 0) {
+
+        return true;
+    }
+
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    return false;
+    }
+
     public int UtangUpperCount (Context context){
        Connection con = new connector(context).getConnection();
        int total;

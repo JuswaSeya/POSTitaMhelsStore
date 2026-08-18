@@ -119,6 +119,7 @@ public class inventory extends AppCompatActivity {
                     dialog.setCancelable(false);
                     dialog.show();
                     startActivity( new Intent(inventory.this, add_product.class));
+                    finish();
                 });
 
 // Back button
@@ -128,7 +129,7 @@ public class inventory extends AppCompatActivity {
                     dialog.setCancelable(false);
                     dialog.show();
                     startActivity( new Intent(inventory.this, MainActivity.class));
-
+                    finish();
 //            } );
                 });
 

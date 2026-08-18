@@ -59,6 +59,7 @@
                 android:padding="20dp">
 
                 <!-- Title -->
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -119,6 +120,31 @@
                 <!-- Current Balance -->
 
                 <!-- Save Button -->
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:text=" Address"
+                    android:textColor="#333333"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edtAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/edittext_background"
+                    android:hint="Enter Address"
+                    android:inputType="phone"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:textColor="#171A23"
+                    android:textColorHint="#999999"
+                    android:textSize="16sp" />
+
                 <Button
                     android:id="@+id/btnSaveChanges"
                     android:layout_width="match_parent"

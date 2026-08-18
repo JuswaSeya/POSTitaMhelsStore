@@ -2,10 +2,12 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +16,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.myapplication.Query.productSqlQuery;
+import com.example.myapplication.Utang_Package.utang;
 import com.example.myapplication.Utang_Package.utang_details;
 import com.example.myapplication.model.Utang_model;
 
@@ -32,25 +35,52 @@ public class edit_Utang_details extends AppCompatActivity {
 
         int id = getIntent().getIntExtra("id", 0);
         Utang_model model =  new productSqlQuery().CurrentName(this,id);
-        ImageView btnBack;
 
+
+        ImageView btnBack;
+        Button btnSaveChanges;
         btnBack=findViewById(R.id.btnBack);
         btnBack.setOnClickListener(v->{
             startActivity(new Intent(edit_Utang_details.this, utang_details.class));
         });
 
-        EditText edtFullName;
+        EditText edtFullName,edtContactNumber,edtAddress;
+
+
+        edtContactNumber=findViewById(R.id.edtContactNumber);
         edtFullName=findViewById(R.id.edtFullName);
-        edtFullName.setText(String.valueOf(id));
+        edtAddress=findViewById(R.id.edtAddress);
+        btnSaveChanges=findViewById(R.id.btnSaveChanges);
+
+
 
 
 
         if(model!= null){
 
             edtFullName.setText(model.getFullname());
+            edtContactNumber.setText(model.getContactNumber());
+            edtAddress.setText(model.getAddress());
+
         }
 
-//        TextView CurrentFullName,CurrentContactNumber;
+        btnSaveChanges.setOnClickListener(v->{
+            boolean updateUtang = new productSqlQuery().updateUtang(this, id,
+                    edtFullName.getText().toString(),
+                    edtContactNumber.getText().toString(),
+                    edtAddress.getText().toString());
+            if (updateUtang == true){
+                Toast.makeText(this, "successfully saved", Toast.LENGTH_SHORT).show();
+
+            }
+         else {
+                Toast.makeText(this, "failed", Toast.LENGTH_SHORT).show();
+            }
+         startActivity(new Intent(this, utang.class));
+
+        });
+
+///        TextView CurrentFullName,CurrentContactNumber;
 //        CurrentFullName=findViewById(R.id.CurrentFullName);
 //        CurrentContactNumber=findViewById(R.id.CurrentContactNumber);
 //
